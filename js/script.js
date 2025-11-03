@@ -1,26 +1,34 @@
-const bouton = document.getElementById("bouton");
+const form = document.getElementById("form");
+const btnRecherhce = document.getElementById("bouton");
+const champRecherche = document.getElementById("input");
 
-bouton.addEventListener('click', ()=> {
-    const input = document.getElementById("input");
-    const valeur = input.value.trim();
+//Appel de l'api
+async function getData(valeur) {
+    //Affiche un chargment le temps que l'api réponde
+    btnRecherhce.textContent = "Chargement ...";
+    btnRecherhce.disabled = true;
+
+    try{
+        const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(valeur)}`);
+        const data = await response.json();            
+        return data;        
+    } catch(error) {
+         console.error( error);
+        } finally {
+            //une fois que l'api réponds le bouton reprends son ancien nom
+            btnRecherhce.textContent = "Rechercher";
+            btnRecherhce.disabled = false;
+        }
+}
+
+
+btnRecherhce.addEventListener('click', ()=> {
+    const valeur = champRecherche.value.trim();
 
     if(!valeur) {
-        console.log("Veuillez saisir un livre");
+        console.warn("Veuillez saisir un terme de recherche !");
         return;
     }
-
-    async function getData() {
-        try{
-            const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(valeur)}`);
-            const data = await response.json();
-            
-            console.log(data.docs);
-            const p = document.createElement("p");
-            p.innerHTML = data.docs[0].author_name;
-            document.body.appendChild(p);            
-        } catch(error) {
-        console.error( error);
-    }
-}
-    getData();
+    
+    getData(valeur);
 });

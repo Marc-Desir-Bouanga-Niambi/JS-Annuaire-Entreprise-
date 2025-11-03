@@ -1,3 +1,73 @@
-            const entreprise = document.createElement("p");
-            entreprise.innerHTML = data[0].name;
-            document.body.appendChild(entreprise);   
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+input {
+  padding: 0.6rem 1rem;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: none;
+  background: #007bff;
+  color: white;
+  font-size: 1rem;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+#results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.card p {
+  margin: 0.3rem 0;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
