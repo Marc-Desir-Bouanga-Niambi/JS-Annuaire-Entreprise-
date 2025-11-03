@@ -1,0 +1,3 @@
+            const entreprise = document.createElement("p");
+            entreprise.innerHTML = data[0].name;
+            document.body.appendChild(entreprise);   
